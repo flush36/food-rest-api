@@ -1,23 +1,19 @@
-package com.myfood_api.domain.model;
+package com.myfood_api.domain.model.repository;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 
-import java.util.Objects;
-
-@Getter
-@Setter
-@Entity
+@Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Cozinha {
+@Entity
+public class Estado {
 
-    @Id
     @EqualsAndHashCode.Include
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String nome;
-
 }
