@@ -1,20 +1,17 @@
 package com.myfood_api.domain.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Getter
 @Setter
-@Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Cozinha {
+@Entity
+public class Grupo {
 
     @Id
     @EqualsAndHashCode.Include
@@ -23,8 +20,9 @@ public class Cozinha {
 
     private String nome;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "cozinha")
-    private List<Restaurante> restaurante = new ArrayList<>();
-
+    @ManyToMany
+    @JoinTable(name = "grupo_permissoes",
+    joinColumns = @JoinColumn(name = "grupo_id"),
+    inverseJoinColumns = @JoinColumn(name = "permissao_id"))
+    private List<Permissao> permissoes;
 }

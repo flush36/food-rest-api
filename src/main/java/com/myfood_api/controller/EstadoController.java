@@ -1,7 +1,7 @@
 package com.myfood_api.controller;
 
-import com.myfood_api.domain.model.repository.Estado;
-import com.myfood_api.domain.model.repository.EstadoRepository;
+import com.myfood_api.domain.model.Estado;
+import com.myfood_api.domain.repository.EstadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

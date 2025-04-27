@@ -1,4 +1,4 @@
-package com.myfood_api.domain.model.repository;
+package com.myfood_api.domain.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
