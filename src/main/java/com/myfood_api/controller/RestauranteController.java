@@ -3,13 +3,13 @@ package com.myfood_api.controller;
 import com.myfood_api.domain.model.Cozinha;
 import com.myfood_api.domain.model.Restaurante;
 import com.myfood_api.domain.service.CadastroRestauranteService;
+import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -32,7 +32,7 @@ public class RestauranteController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Restaurante adicionar(@RequestBody Restaurante restaurante) {
+    public Restaurante adicionar(@RequestBody @Valid Restaurante restaurante) {
         return cadastroRestauranteService.salvar(restaurante);
     }
 

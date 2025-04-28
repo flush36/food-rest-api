@@ -1,6 +1,7 @@
 package com.myfood_api.domain.service;
 
 import com.myfood_api.domain.exception.EntidadeEmUsoException;
+import com.myfood_api.domain.exception.EntidadeNaoEncontradaException;
 import com.myfood_api.domain.model.Cozinha;
 import com.myfood_api.domain.model.CozinhasXmlWrapper;
 import com.myfood_api.domain.repository.CozinhaRepository;
@@ -39,10 +40,18 @@ public class CadastroCozinhaService {
     public void excluir(Long cozinhaId) {
         try {
             Optional<Cozinha> cozinhaOptional = buscarPorId(cozinhaId);
-            cozinhaOptional.ifPresent(cozinha -> cozinhaRepository.delete(cozinha));
+
+            if (cozinhaOptional.isEmpty()) {
+                throw new EntidadeNaoEncontradaException(
+                        String.format("Cozinha de código %d não encontrada", cozinhaId));
+            }
+
+            cozinhaRepository.delete(cozinhaOptional.get());
         } catch (DataIntegrityViolationException e) {
             throw new EntidadeEmUsoException(
                     String.format("Cozinha de código %d não pode ser removida, pois está em uso", cozinhaId));
         }
     }
+
+
 }
